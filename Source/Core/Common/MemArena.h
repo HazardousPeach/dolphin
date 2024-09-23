@@ -49,7 +49,7 @@ public:
   ///
   void GrabSHMSegment(size_t size, std::string_view base_name);
 
-  ///
+  //
   /// Release the memory segment previously allocated with GrabSHMSegment().
   /// Should not be called before all views have been released.
   ///
@@ -124,6 +124,9 @@ private:
   int m_shm_fd = 0;
   void* m_reserved_region = nullptr;
   std::size_t m_reserved_region_size = 0;
+#ifndef ANDROID
+  std::string m_seg_name;
+#endif
 #endif
 };
 
